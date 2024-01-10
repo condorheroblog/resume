@@ -48,13 +48,13 @@ const basicInfo = [
 	{
 		labelEn: "blog",
 		label: "博客",
-		value: "https://www.jianshu.com/u/491bd4155f96",
+		value: "juejin.cn/user/1046390801441949",
 		link: true
 	},
 	{
 		labelEn: "GitHub",
 		label: "GitHub",
-		value: "https://github.com/condorheroblog",
+		value: "github.com/condorheroblog",
 		link: true
 	},
 ];
@@ -140,7 +140,16 @@ const documentTitle = "个人简历";
 							</span>
 
 							{
-								item.link ? <a class="print:text-sm max-sm:text-xs underline underline-offset-4 text-blue-500 hover:text-blue-700" href={item.value} target="_blank">{item.value}</a> : <span>{item.value}</span>
+								item.link
+								?
+								<a
+									class="print:text-sm max-md:text-sm underline underline-offset-4 text-blue-500 hover:text-blue-700"
+									href={`https://${item.value}`} target="_blank"
+								>
+								{item.value}
+								</a>
+								:
+								<span>{item.value}</span>
 							}
 
 						</li>

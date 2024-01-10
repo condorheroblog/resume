@@ -1,6 +1,6 @@
 # 个人简历
 
-使用 [Astro](https://astro.build/) 和 [Tailwind CSS](https://tailwindcss.com/) 搭建 —— https://github.com/condorheroblog/resume
+使用 [Astro](https://astro.build/) 和 [Tailwind CSS](https://tailwindcss.com/) 搭建 —— https://condorheroblog.github.io/resume/
 
 ## 🚀 Project Structure
 
