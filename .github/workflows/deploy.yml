@@ -39,7 +39,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm install
-          pnpm run Build
+          npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
