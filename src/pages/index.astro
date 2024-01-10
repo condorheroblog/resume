@@ -1,0 +1,229 @@
+---
+// https://www.jianliben.com/editor/?t=tpl101
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+
+const basicInfo = [
+	{
+		labelEn: "name",
+		label: "姓名",
+		value: "李心伟"
+	},
+	{
+		labelEn: "sex",
+		label: "性别",
+		value: "男"
+	},
+	{
+		labelEn: "age",
+		label: "年龄",
+		value: "26"
+	},
+	{
+		labelEn: "experience",
+		label: "经验",
+		value: "4.5 年"
+	},
+	{
+		labelEn: "education",
+		label: "学历",
+		value: "本科"
+	},
+	{
+		labelEn: "phone",
+		label: "电话",
+		value: "18297806219"
+	},
+	{
+		labelEn: "college",
+		label: "院校",
+		value: "安徽财经大学"
+	},
+	{
+		labelEn: "email",
+		label: "邮箱",
+		value: "love2xinwei@gmail.com"
+	},
+	{
+		labelEn: "blog",
+		label: "博客",
+		value: "https://www.jianshu.com/u/491bd4155f96",
+		link: true
+	},
+	{
+		labelEn: "GitHub",
+		label: "GitHub",
+		value: "https://github.com/condorheroblog",
+		link: true
+	},
+];
+
+const workExperiences = [
+	{
+		time: "2018/10 - 2020/1",
+		company: "上海创先泰克教育科技有限公司",
+		post: "前端开发工程师",
+	},
+	{
+		time: "2020/4 - 2024",
+		company: "上海杉数网络科技有限公司",
+		post: "前端开发工程师",
+	},
+];
+
+const jobIntention = [
+	{
+		label: "岗位",
+		value: "前端开发工程师"
+	},
+	{
+		label: "薪资",
+		value: "**K ~ **K"
+	},
+	{
+		label: "地点",
+		value: "上海市"
+	},
+	{
+		label: "工作性质",
+		value: "全职"
+	}
+];
+
+const professionalSkills = new Set([
+	"熟练使用 Vue 和 React 全家桶",
+	"有 Webpack 和 Vite 插件开发开发经验",
+	"熟悉 Node.js + TS 开发，有 npm 模块开发经验",
+	"擅长前端模块化/组件化编程",
+	"有微信小程序、uni-app 和移动端开发经验",
+]);
+
+const projectExperiences = [
+	{
+		projectName: {
+			time: "2021/3 - 2022/6",
+			company: "上海杉数网络科技有限公司",
+			post: "前端开发工程师",
+		},
+		projectIntroduction: "本项目使用 React18 + antd 进行开发，是一个标准的 PC 管理后台",
+		projectResponsibilities: [
+			"前端项目负责人"
+		],
+		"projectPerception": "开发了用户手册插件"
+	}
+];
+const documentTitle = "个人简历";
+---
+
+<Layout title={documentTitle}>
+	<main class="p-10">
+		<h1 class="flex justify-center text-3xl text-blue-500 font-bold">{documentTitle}</h1>
+
+		<Card title="基本信息" />
+
+		<ul class="grid grid-cols-2 gap-3 py-4 max-sm:grid-cols-1">
+			{
+				basicInfo.map((item) => {
+					return (
+						<li class="flex gap-3 text-slate-600 print:gap-1">
+							<span>
+								{
+									item.label.split("").map((labelItem, labelIndex) => {
+										const len = item.label.split("").length;
+										if (len < 4 && labelIndex + 1 !== len ) {
+												return <>{labelItem}&#12288;</>
+										}
+										return labelItem
+									})
+								}：
+							</span>
+
+							{
+								item.link ? <a class="print:text-sm max-sm:text-xs underline underline-offset-4 text-blue-500 hover:text-blue-700" href={item.value} target="_blank">{item.value}</a> : <span>{item.value}</span>
+							}
+
+						</li>
+					);
+				})
+			}
+		</ul>
+
+		<Card title="求职意向" />
+
+		<ul class="flex justify-between py-4 max-sm:flex-col">
+			{
+				jobIntention.map((jobItem) => {
+					return (
+						<li class="flex">
+							<span>➢ {jobItem.label}：</span>
+							<span>{jobItem.value}</span>
+						</li>
+					);
+				})
+			}
+		</ul>
+
+		<Card title="工作经历" />
+
+		<ul class="flex flex-col gap-4 py-4">
+			{
+				workExperiences.map((workItem) => {
+					return (
+						<li class="flex justify-between max-sm:flex-col">
+							<span><span class="hidden max-sm:inline">➢ 时间：</span>{workItem.time}</span>
+							<span><span class="hidden max-sm:inline">➢ 公司：</span>{workItem.company}</span>
+							<span><span class="hidden max-sm:inline">➢ 岗位：</span>{workItem.post}</span>
+						</li>
+					);
+				})
+			}
+		</ul>
+
+		<Card title="专业技能" />
+
+		<ul class="flex flex-col gap-3 py-4 list-disc list-inside">
+			{
+				Array.from(professionalSkills).map((skillItem) => {
+					return (
+						<li>{skillItem}</li>
+					);
+				})
+			}
+		</ul>
+
+		<Card title="项目经历" />
+
+		<div class="flex flex-col gap-3 py-4">
+			{
+				projectExperiences.map((projectItem) => {
+					return (
+						<ul class="flex flex-col gap-3">
+							<li class="flex justify-between max-sm:flex-col">
+								<span><span class="hidden max-sm:inline">➢ 时间：</span>{projectItem.projectName.time}</span>
+								<span><span class="hidden max-sm:inline">➢ 公司：</span>{projectItem.projectName.company}</span>
+								<span><span class="hidden max-sm:inline">➢ 岗位：</span>{projectItem.projectName.post}</span>
+							</li>
+							<li>
+								<b>项目简介：</b>
+								{projectItem.projectIntroduction}
+							</li>
+							<li>
+								<b>职责：</b>
+								{projectItem.projectResponsibilities.map((dutyItem) => dutyItem)}
+							</li>
+							<li>
+								<b>项目心得：</b>
+								{projectItem.projectPerception}
+							</li>
+						</ul>
+					);
+				})
+			}
+		</ul>
+
+	</main>
+</Layout>
+
+<style>
+</style>
