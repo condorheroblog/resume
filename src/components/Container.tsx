@@ -8,9 +8,9 @@ import { resumeInformation as RESUME_INFORMATION } from "../meta";
 export function Container () {
 	const [resumeInformation, setResumeInformation] = useState(RESUME_INFORMATION);
 	return (
-		<section className="flex justify-between gap-8 max-md:flex-col p-10 print:p-0">
-			<JsonEditor resumeInformation={resumeInformation} setResumeInformation={setResumeInformation} />
+		<section className="flex justify-between gap-8 max-md:flex-col p-8 print:p-0 h-screen">
 			<ResumeTemplate1 resumeInformation={resumeInformation} />
+			<JsonEditor resumeInformation={resumeInformation} setResumeInformation={setResumeInformation} />
 		</section>
 	);
 }

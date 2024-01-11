@@ -1,15 +1,27 @@
+import { useMemo } from "react";
 
 // https://www.jianliben.com/editor/?t=tpl101
 import { Title } from "./Title";
 import { Button } from "./Button";
 import type { ResumeInformationType } from "../meta";
+import { isChinese } from "../utils";
 
 interface ResumeTemplate1Props {
 	resumeInformation: ResumeInformationType;
 }
 export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
+
+	const maxStringLength = useMemo(() => {
+		return resumeInformation.basicInfo.reduce((l, basicInfoItem) => {
+			if(isChinese(basicInfoItem.label) && basicInfoItem.label.length > l) {
+				return basicInfoItem.label.length;
+			}
+			return l;
+		}, 4);
+	}, [resumeInformation.basicInfo]);
+
 	return (
-		<section className="w-7/12 max-md:w-full bg-teal-50 px-5 pb-5 rounded-lg print:w-full print:rounded-none print:bg-white print:p-0">
+		<section className="overflow-auto max-md:overflow-visible w-7/12 max-md:w-full bg-teal-50 px-5 pb-5 rounded-lg print:w-full print:rounded-none print:bg-white print:p-0 print:overflow-visible">
 			<div className="print:hidden flex justify-center gap-3 py-4">
 				<Button onClick={() => {window.print()}}>导出 / 保存</Button>
 				<Button>
@@ -26,24 +38,23 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 						resumeInformation.basicInfo.map((item) => {
 							return (
 								<li className="flex gap-3 text-slate-600 print:gap-1" key={item.value}>
-									{/* <span>
+									<span>
 										{
 											item.label.split("").map((labelItem, labelIndex) => {
 												const len = item.label.split("").length;
-												if (len < 4 && labelIndex + 1 !== len ) {
-														return <>{labelItem}&#12288;</>
+												if (len < maxStringLength && labelIndex + 1 !== len ) {
+														return <b key={labelIndex}>{labelItem}&#12288;</b>
 												}
-												return labelItem
+												return <b key={labelIndex}>{labelItem}</b>
 											})
 										}：
-									</span> */}
-									{item.label}
+									</span>
 
 									{
 										item.link
 										?
 										<a
-											className="print:text-sm max-md:text-sm underline underline-offset-4 text-blue-500 hover:text-blue-700"
+											className="print:text-sm max-md:text-sm link"
 											href={`https://${item.value}`} target="_blank"
 										>
 										{item.value}
@@ -103,7 +114,7 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 
 				<Title title="项目经历" />
 
-				<div className="flex flex-col gap-3 py-4">
+				<div className="flex flex-col gap-10 py-4">
 					{
 						resumeInformation.projectExperiences.map((projectItem) => {
 							return (
@@ -114,12 +125,12 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 										<span><span className="hidden max-sm:inline">➢ 岗位：</span>{projectItem.projectName.post}</span>
 									</li>
 									<li>
-										<b>项目简介：</b>
+										<b>项目背景：</b>
 										{projectItem.projectIntroduction}
 									</li>
 									<li>
 										<b>职责：</b>
-										{projectItem.projectResponsibilities.map((dutyItem) => dutyItem)}
+										<span dangerouslySetInnerHTML={{ __html: projectItem.projectResponsibilities }}></span>
 									</li>
 									<li>
 										<b>项目心得：</b>
