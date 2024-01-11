@@ -123,7 +123,7 @@ export const projectExperiences = [
 			post: "前端开发工程师",
 		},
 		projectIntroduction: "斐乐项目开始实行标准化交付，要求提供用户手册的在线（vitepress/vuepress 搭建）和 PDF（根据网页自动生成） 版本，遇到的问题是：PDF 版本导出没有大纲和无法自定义页眉页脚的 URL。",
-		projectResponsibilities: "为了解决生成 PDF 的缺陷，通过半年的时间调研 Puppeteer 生成 PDF 配合 pdf-lib 低级 API 操作 PDF 原数据，开源 <a class='link' href='https://github.com/condorheroblog/vuepress-plugin-export-pdf' target='_blank'>vuepress-plugin-export-pdf</a> 和 <a class='link' href='https://github.com/condorheroblog/vitepress-export-pdf' target='_blank'>vitepress-export-pdf</a> 来提高交付质量。",
+		projectResponsibilities: "为了解决生成 PDF 的缺陷，通过半年的时间调研 Puppeteer 生成 PDF 配合 pdf-lib 低级 API 操作 PDF 原数据，开源了 <a class='link' href='https://github.com/condorheroblog/vuepress-plugin-export-pdf' target='_blank'>vuepress-plugin-export-pdf</a> 和 <a class='link' href='https://github.com/condorheroblog/vitepress-export-pdf' target='_blank'>vitepress-export-pdf</a> 来提高交付质量。",
 		projectPerception: "自动化标准化交付用户手册，可以提高产品的工作效率和项目的交付质量，值得花时间去研究和打磨细节。"
 	}
 ];

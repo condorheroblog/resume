@@ -21,15 +21,15 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 	}, [resumeInformation.basicInfo]);
 
 	return (
-		<section className="overflow-auto max-md:overflow-visible w-7/12 max-md:w-full bg-teal-50 px-5 pb-5 rounded-lg print:w-full print:rounded-none print:bg-white print:p-0 print:overflow-visible">
+		<section className="overflow-auto max-md:overflow-visible w-7/12 max-md:w-full bg-teal-50 px-5 pb-5 max-md:px-3 rounded-lg print:w-full print:rounded-none print:bg-white print:p-0 print:overflow-visible">
 			<div className="print:hidden flex justify-center gap-3 py-4">
 				<Button onClick={() => {window.print()}}>导出 / 保存</Button>
 				<Button>
 					<a href="https://github.com/condorheroblog/resume" target="_blank">Github</a>
 				</Button>
 			</div>
-			<main className="bg-white p-8 shadow-md print:border-none print:shadow-none print:p-4">
-				<h1 className="flex justify-center text-3xl text-blue-500 font-bold">{resumeInformation.resumeTitle}</h1>
+			<main className="bg-white p-8 max-md:p-4 shadow-md print:border-none print:shadow-none print:p-4">
+				<h1 className="flex justify-center text-3xl text-blue-500 font-bold pb-3 print:pb-1">{resumeInformation.resumeTitle}</h1>
 
 				<Title title="基本信息" />
 
