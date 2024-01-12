@@ -5,10 +5,10 @@ import { Title } from "./Title";
 import type { ResumeInformationType } from "../meta";
 import { isChinese } from "../utils";
 
-interface ResumeTemplate1Props {
+interface ResumeTemplate2Props {
 	resumeInformation: ResumeInformationType;
 }
-export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
+export function ResumeTemplate2 ({ resumeInformation }: ResumeTemplate2Props) {
 
 	const maxStringLength = useMemo(() => {
 		return resumeInformation.basicInfo.reduce((l, basicInfoItem) => {
@@ -21,9 +21,9 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 
 	return (
 		<main className="bg-white p-8 max-md:p-4 shadow-md print:border-none print:shadow-none print:p-4">
-			<h1 className="flex justify-center text-3xl text-blue-500 font-bold pb-3 print:pb-1">{resumeInformation.resumeTitle}</h1>
+			<h1 className="flex justify-center text-3xl text-blue-500 font-bold pb-5">{resumeInformation.resumeTitle}</h1>
 
-			<Title title="基本信息" />
+			<Title title="基本信息" template={2} />
 
 			<ul className="grid grid-cols-2 gap-3 py-4 max-sm:grid-cols-1">
 				{
@@ -61,7 +61,7 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 				}
 			</ul>
 
-			<Title title="求职意向" />
+			<Title title="求职意向" template={2} />
 
 			<ul className="flex justify-between py-4 max-sm:flex-col max-md:grid max-md:grid-cols-2">
 				{
@@ -76,7 +76,7 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 				}
 			</ul>
 
-			<Title title="工作经历" />
+			<Title title="工作经历" template={2} />
 
 			<ul className="flex flex-col gap-4 py-4">
 				{
@@ -92,7 +92,7 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 				}
 			</ul>
 
-			<Title title="专业技能" />
+			<Title title="专业技能" template={2} />
 
 			<ul className="flex flex-col gap-3 py-4 list-disc list-inside">
 				{
@@ -104,7 +104,7 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 				}
 			</ul>
 
-			<Title title="项目经历" />
+			<Title title="项目经历" template={2} />
 
 			<div className="flex flex-col gap-10 py-4">
 				{
