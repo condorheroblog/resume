@@ -11,7 +11,7 @@ interface ResumeContainerProps {
 export function ResumeContainer ({ resumeInformation }: ResumeContainerProps) {
 	const [templateNumber, setTemplateNumber] = useState(() => {
 		const hash = window.location.hash;
-		return new URLSearchParams(hash.startsWith("#") ? hash.slice(1) : hash).get("template")
+		return new URLSearchParams(hash.startsWith("#") ? hash.slice(1) : hash).get("template") ?? "1"
 	});
 
 	return (
@@ -29,6 +29,7 @@ export function ResumeContainer ({ resumeInformation }: ResumeContainerProps) {
 										window.location.href = import.meta.env.BASE_URL + `#template=${buttonIndex + 1}`
 
 									}}
+									className={templateNumber === `${buttonIndex + 1}` ? "bg-cyan-500 hover:bg-cyan-600" : ""}
 								>
 									模板 {buttonIndex + 1}
 								</Button>
