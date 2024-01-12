@@ -68,20 +68,20 @@ export const workExperiences = [
 
 export const jobIntention = [
 	{
-		label: "岗位",
+		label: "期望职位",
 		value: "前端开发工程师"
 	},
 	{
-		label: "薪资",
+		label: "期望薪资",
 		value: "**K ~ **K"
 	},
 	{
-		label: "地点",
+		label: "期望城市",
 		value: "上海市"
 	},
 	{
-		label: "工作性质",
-		value: "全职"
+		label: "目前状态",
+		value: "随时到岗"
 	}
 ];
 
@@ -98,13 +98,23 @@ export const professionalSkills = [
 export const projectExperiences = [
 	{
 		projectName: {
+			time: "2023/10 - 2024/02",
+			company: "上海杉数网络科技有限公司",
+			post: "前端开发工程师",
+		},
+		projectIntroduction: "教研平台项目，最短的时间提供出来一个前后端可用的产品，痛点在没有后端的情况下开发，后端介入后以最小的成本快速上线，如何有效的 mock 数据。",
+		projectResponsibilities: "使用写死的数据（没有交互体验）或者 JSON-server（需要单独部署服务）最简单的成本就是本地利用 Vite 提供的服务器模拟真实数据，线上拦截 XHR 或者 Fetch 请求，为此实现了 <a class='link' href='https://github.com/condorheroblog/vite-plugin-fake-server' target='_blank'>vite-plugin-fake-server</a> 插件，提供一流的开发体验和数据模拟体验，助力项目快速研发。",
+		projectPerception: "偶尔从日常项目抽身出来看看有什么事情常做且没有技术难度的，那么基本是可以用技术解决的。"
+	},
+	{
+		projectName: {
 			time: "2023/06 - 2023/10",
 			company: "上海杉数网络科技有限公司",
 			post: "前端开发工程师",
 		},
-		projectIntroduction: "",
-		projectResponsibilities: "",
-		projectPerception: ""
+		projectIntroduction: "玛氏项目公司推出自主产品，一个在一个项目中内嵌 Demand、Insight、Inventory 等等，每一个大模块都是一个小项目，涉及到前端架构的调整，SPA 不利于开发组织代码，需要使用新的软件架构",
+		projectResponsibilities: "参与架构设计，经过讨论 MPA 需要跳转用户体验不好，项目模块也没有达到使用微前端的程度，最后使用了 monorepo，可以很好的组织代码，同时在未来也很容易迁移到微前端。",
+		projectPerception: "开源让我学会了 monorepo，转身就用到了项目上，不仅要做到从书中学，也要做到从事上练。"
 	},
 	{
 		projectName: {
