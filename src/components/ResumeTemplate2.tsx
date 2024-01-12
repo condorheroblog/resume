@@ -63,7 +63,7 @@ export function ResumeTemplate2 ({ resumeInformation }: ResumeTemplate2Props) {
 
 			<Title title="求职意向" template={2} />
 
-			<ul className="flex justify-between py-4 max-sm:flex-col max-md:grid max-md:grid-cols-2">
+			<ul className="flex justify-between py-4 max-sm:flex-col max-md:flex-col max-lg:flex-col print:grid print:grid-cols-2">
 				{
 					resumeInformation.jobIntention.map((jobItem) => {
 						return (

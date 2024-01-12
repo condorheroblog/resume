@@ -10,7 +10,7 @@ interface JsonEditorProps {
 }
 export function JsonEditor ({ resumeInformation, setResumeInformation }: JsonEditorProps) {
 	return (
-		<div className="print:hidden rounded-lg border p-4 w-5/12 max-md:w-full overflow-auto" >
+		<div className="print:hidden rounded-lg border p-4 w-5/12 max-lg:w-full overflow-auto" >
 			<JsonView
 				collapseStringsAfterLength={99999999999999}
 				editable

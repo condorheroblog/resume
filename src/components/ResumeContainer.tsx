@@ -15,7 +15,7 @@ export function ResumeContainer ({ resumeInformation }: ResumeContainerProps) {
 	});
 
 	return (
-		<section className="overflow-auto max-md:overflow-visible w-7/12 max-md:w-full bg-teal-50 px-5 pb-5 max-md:px-3 rounded-lg print:w-full print:rounded-none print:bg-white print:p-0 print:overflow-visible">
+		<section className="overflow-auto max-lg:overflow-visible w-7/12 max-lg:w-full bg-teal-50 px-5 pb-5 max-lg:px-3 rounded-lg print:w-full print:rounded-none print:bg-white print:p-0 print:overflow-visible">
 			<div className="print:hidden flex justify-between gap-3 py-4">
 				<div className="flex gap-3">
 					{
