@@ -21,5 +21,8 @@
     "react18-json-view": "^0.2.9",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "code-inspector-plugin": "^1.2.10"
   }
 }
