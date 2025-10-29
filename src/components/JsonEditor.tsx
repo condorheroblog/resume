@@ -2,15 +2,19 @@ import JsonView from "react18-json-view";
 import "react18-json-view/src/style.css";
 
 
-import type { ResumeInformationType } from "../meta";
+import type { ResumeItemType } from "../meta";
 
 interface JsonEditorProps {
-	resumeInformation: ResumeInformationType;
-	setResumeInformation: (a: ResumeInformationType) => void;
+	resumeInformation: ResumeItemType;
+	setResumeInformation: (a: ResumeItemType) => void;
+	selectedResumeKey: string;
 }
-export function JsonEditor ({ resumeInformation, setResumeInformation }: JsonEditorProps) {
+export function JsonEditor ({ resumeInformation, setResumeInformation, selectedResumeKey }: JsonEditorProps) {
 	return (
 		<div className="print:hidden rounded-lg border p-4 w-5/12 max-lg:w-full overflow-auto" >
+			<div className="mb-3 text-sm text-gray-600">
+				当前编辑: <span className="font-medium">{selectedResumeKey}</span>
+			</div>
 			<JsonView
 				collapseStringsAfterLength={99999999999999}
 				editable

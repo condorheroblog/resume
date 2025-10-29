@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 
-// https://www.jianliben.com/editor/?t=tpl101
 import { Title } from "./Title";
-import type { ResumeInformationType } from "../meta";
+import type { ResumeItemType } from "../meta";
 import { isChinese } from "../utils";
+import { resumeTitle } from "../meta";
 
 interface ResumeTemplate2Props {
-	resumeInformation: ResumeInformationType;
+	resumeInformation: ResumeItemType;
 }
 export function ResumeTemplate2 ({ resumeInformation }: ResumeTemplate2Props) {
 
@@ -21,7 +21,9 @@ export function ResumeTemplate2 ({ resumeInformation }: ResumeTemplate2Props) {
 
 	return (
 		<main className="bg-white p-8 max-md:p-4 shadow-md print:border-none print:shadow-none print:p-4">
-			<h1 className="flex justify-center text-3xl text-blue-500 font-bold pb-5">{resumeInformation.resumeTitle}</h1>
+			<h1 className="flex justify-center text-3xl text-blue-500 font-bold pb-5">
+				{resumeTitle}
+			</h1>
 
 			<Title title="基本信息" template={2} />
 
@@ -76,6 +78,27 @@ export function ResumeTemplate2 ({ resumeInformation }: ResumeTemplate2Props) {
 				}
 			</ul>
 
+			{resumeInformation.educationExperiences && (
+				<>
+					<Title title="教育经历" template={2} />
+					
+					<ul className="flex flex-col gap-4 py-4">
+						{
+							resumeInformation.educationExperiences.map((eduItem) => {
+								return (
+									<li className="flex justify-between max-sm:flex-col" key={eduItem.time}>
+										<span><span className="hidden max-sm:inline">➢ 学校：</span>{eduItem.school}</span>
+										<span><span className="hidden max-sm:inline">➢ 学历：</span>{eduItem.degree}</span>
+										<span><span className="hidden max-sm:inline">➢ 专业：</span>{eduItem.major}</span>
+										<span><span className="hidden max-sm:inline">➢ 时间：</span>{eduItem.time}</span>
+									</li>
+								);
+							})
+						}
+					</ul>
+				</>
+			)}
+
 			<Title title="工作经历" template={2} />
 
 			<ul className="flex flex-col gap-4 py-4">
@@ -83,9 +106,9 @@ export function ResumeTemplate2 ({ resumeInformation }: ResumeTemplate2Props) {
 					resumeInformation.workExperiences.map((workItem) => {
 						return (
 							<li className="flex justify-between max-sm:flex-col" key={workItem.time}>
-								<span><span className="hidden max-sm:inline">➢ 时间：</span>{workItem.time}</span>
 								<span><span className="hidden max-sm:inline">➢ 公司：</span>{workItem.company}</span>
-								<span><span className="hidden max-sm:inline">➢ 岗位：</span>{workItem.post}</span>
+								<span><span className="hidden max-sm:inline">➢ 岗位：</span>{workItem.position}</span>
+								<span><span className="hidden max-sm:inline">➢ 时间：</span>{workItem.time}</span>
 							</li>
 						);
 					})
@@ -110,24 +133,43 @@ export function ResumeTemplate2 ({ resumeInformation }: ResumeTemplate2Props) {
 				{
 					resumeInformation.projectExperiences.map((projectItem) => {
 						return (
-							<ul className="flex flex-col gap-3" key={projectItem.projectName.time}>
+							<ul className="flex flex-col gap-3" key={projectItem.projectDetail.time}>
 								<li className="flex justify-between max-sm:flex-col">
-									<span><span className="hidden max-sm:inline">➢ 时间：</span>{projectItem.projectName.time}</span>
-									<span><span className="hidden max-sm:inline">➢ 公司：</span>{projectItem.projectName.company}</span>
-									<span><span className="hidden max-sm:inline">➢ 岗位：</span>{projectItem.projectName.post}</span>
+									{projectItem.projectDetail.name && (
+										<span className="font-bold"><span className="hidden max-sm:inline">➢ 项目：</span>{projectItem.projectDetail.name}</span>
+									)}
+									{projectItem.projectDetail.company && (
+										<span><span className="hidden max-sm:inline">➢ 公司：</span>{projectItem.projectDetail.company}</span>
+									)}
+									{projectItem.projectDetail.position && (
+										<span><span className="hidden max-sm:inline">➢ 岗位：</span>{projectItem.projectDetail.position}</span>
+									)}
+									{projectItem.projectDetail.time && (
+										<span><span className="hidden max-sm:inline">➢ 时间：</span>{projectItem.projectDetail.time}</span>
+									)}
 								</li>
 								<li>
 									<b>项目背景：</b>
-									{projectItem.projectIntroduction}
+									<span dangerouslySetInnerHTML={{ __html: projectItem.projectIntroduction || "" }} />
 								</li>
 								<li>
 									<b>职责：</b>
-									<span dangerouslySetInnerHTML={{ __html: projectItem.projectResponsibilities }}></span>
+									<ul className="list-disc list-inside">
+										{
+											projectItem.projectResponsibilities?.map((responsibilityItem) => {
+												return (
+													<li key={responsibilityItem} dangerouslySetInnerHTML={{ __html: responsibilityItem }}></li>
+												);
+											})
+										}
+									</ul>
 								</li>
-								<li>
-									<b>项目心得：</b>
-									{projectItem.projectPerception}
-								</li>
+								{projectItem.projectPerception && (
+									<li>
+										<b>项目心得：</b>
+										{projectItem.projectPerception}
+									</li>
+								)}
 							</ul>
 						);
 					})
