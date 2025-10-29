@@ -1,23 +1,53 @@
-import { ResumeTemplate1 } from "./ResumeTemplate1";
-import { ResumeTemplate2 } from "./ResumeTemplate2";
-import { Button } from "./Button";
-import type { ResumeInformationType } from "../meta";
+import type { ResumeItemType } from "../meta";
+
 import { useState } from "react";
 
-interface ResumeContainerProps {
-	resumeInformation: ResumeInformationType;
+import { Select } from "./Select";
+import { Button } from "./Button";
+import { ResumeTemplate1 } from "./ResumeTemplate1";
+import { ResumeTemplate2 } from "./ResumeTemplate2";
+
+interface SelectOption {
+  value: string;
+  label: string | React.ReactNode;
 }
 
-export function ResumeContainer ({ resumeInformation }: ResumeContainerProps) {
+interface ResumeContainerProps {
+	resumeInformation: ResumeItemType;
+	selectedResumeKey: string;
+	onResumeChange: (value: string) => void;
+	resumeOptions: SelectOption[];
+}
+
+export function ResumeContainer ({
+	resumeInformation,
+	selectedResumeKey,
+	onResumeChange,
+	resumeOptions
+}: ResumeContainerProps) {
 	const [templateNumber, setTemplateNumber] = useState(() => {
-		const hash = window.location.hash;
-		return new URLSearchParams(hash.startsWith("#") ? hash.slice(1) : hash).get("template") ?? "1"
+		const searchParams = new URLSearchParams(window.location.search);
+		return searchParams.get("template") ?? "1"
 	});
 
 	return (
 		<section className="overflow-auto max-lg:overflow-visible w-7/12 max-lg:w-full bg-teal-50 px-5 pb-5 max-lg:px-3 rounded-lg print:w-full print:rounded-none print:bg-white print:p-0 print:overflow-visible">
 			<div className="print:hidden flex justify-between gap-3 py-4">
 				<div className="flex gap-3">
+					<Select
+						className="w-40"
+						options={resumeOptions}
+						defaultValue={selectedResumeKey}
+						onChange={(value) => {
+							onResumeChange(value);
+							
+							// 更新 URL 搜索参数
+							const url = new URL(window.location.href);
+							url.searchParams.set("resume", value);
+							window.history.pushState({}, "", url);
+						}}
+						placeholder="选择简历日期"
+					/>
 					{
 						Array.from(({ length: 2 })).map((_, buttonIndex) => {
 							return (
@@ -26,8 +56,11 @@ export function ResumeContainer ({ resumeInformation }: ResumeContainerProps) {
 									onClick={() => {
 										const newNumber = buttonIndex + 1;
 										setTemplateNumber(`${newNumber}`);
-										window.location.href = import.meta.env.BASE_URL + `#template=${buttonIndex + 1}`
-
+										
+										// 更新URL搜索参数
+										const url = new URL(window.location.href);
+										url.searchParams.set("template", `${buttonIndex + 1}`);
+										window.history.pushState({}, "", url);
 									}}
 									className={templateNumber === `${buttonIndex + 1}` ? "bg-cyan-500 hover:bg-cyan-600" : ""}
 								>

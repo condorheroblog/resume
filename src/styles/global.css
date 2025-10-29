@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* 链接样式 */
+.link {
+	color: theme("colors.blue.500");
+	text-decoration-line: underline;
+	text-decoration-color: theme("colors.blue.500");
+	text-underline-offset: theme("textUnderlineOffset.4");
+	&:hover {
+		color: theme("colors.blue.700");
+	}
+}
