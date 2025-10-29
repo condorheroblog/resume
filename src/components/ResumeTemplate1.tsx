@@ -65,7 +65,7 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 
 			<Title title="求职意向" />
 
-			<ul className="flex justify-between py-4 max-sm:flex-col max-md:flex-col max-lg:flex-col print:grid print:grid-cols-2">
+			<ul className="flex justify-between py-4 flex-row">
 				{
 					resumeInformation.jobIntention.map((jobItem) => {
 						return (
@@ -81,7 +81,7 @@ export function ResumeTemplate1 ({ resumeInformation }: ResumeTemplate1Props) {
 			{resumeInformation.educationExperiences && (
 				<>
 					<Title title="教育经历" />
-					
+
 					<ul className="flex flex-col gap-4 py-4">
 						{
 							resumeInformation.educationExperiences.map((eduItem) => {
